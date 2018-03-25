@@ -6,3 +6,6 @@ Text storage for the masses. Yes, no server, no database, but it WILL store your
 Cloud services:
 * http://myjson.com/api
 * Netlify.
+
+TODO:
+* Sanitize input
