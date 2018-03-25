@@ -17,7 +17,36 @@ function submit() {
   console.log("Submitted.");
   console.log(text);
   let hash = text.hashCode();
-  alert("Saved at: " + url + "/" + hash);
+  updateData(hash, text)
+}
+
+function getData() {
+    // get data from db
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(myJson);
+    });
+}
+
+function updateData(key, val) {
+  let entry = {};
+  entry[key] = String(val);
+
+  // update JSON
+  fetch(url, {
+    method: "PUT", // or POST
+    body: JSON.stringify(entry),
+    headers: new Headers({
+      "Content-Type": "application/json"
+    })
+  })
+    .then(res => res.json())
+    .catch(error => console.error("Error:", error))
+    .then(response => console.log("Success:", response))
+    .then(alert("Saved at: " + url + "/" + key));
 }
 
 window.onload = function() {
