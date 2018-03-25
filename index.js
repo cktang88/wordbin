@@ -17,36 +17,38 @@ function submit() {
   console.log("Submitted.");
   console.log(text);
   let hash = text.hashCode();
-  updateData(hash, text)
+
+  getData()
+    .then(data => {
+      data[hash] = {
+        text: String(text),
+        dateSubmitted: new Date().toJSON().slice(0, 16)
+      };
+      return data;
+    })
+    .then(data => updateData(data))
+    .then(alert("Saved at: " + url + "/" + hash));
 }
 
 function getData() {
-    // get data from db
-  fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(myJson) {
-      console.log(myJson);
-    });
+  // get data from db
+  return fetch(url).then(function(response) {
+    return response.json();
+  });
 }
 
-function updateData(key, val) {
-  let entry = {};
-  entry[key] = String(val);
-
+function updateData(newData) {
   // update JSON
   fetch(url, {
     method: "PUT", // or POST
-    body: JSON.stringify(entry),
+    body: JSON.stringify(newData),
     headers: new Headers({
       "Content-Type": "application/json"
     })
   })
     .then(res => res.json())
     .catch(error => console.error("Error:", error))
-    .then(response => console.log("Success:", response))
-    .then(alert("Saved at: " + url + "/" + key));
+    .then(response => console.log("Success:", response));
 }
 
 window.onload = function() {
