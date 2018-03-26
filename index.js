@@ -19,7 +19,6 @@ function loadData() {
       console.log(entry);
       if (entry && entry.text)
         document.getElementById("text1").value = entry.text;
-      else alert("No text stored at that location.");
     })
     .then(console.log("Loaded."))
     .catch(err => console.log(err));
@@ -62,6 +61,7 @@ function updateData(newData) {
 }
 
 function URLHash() {
+  // hash-based client side routing
   return String(window.location.href.split("#")[1]) || "";
 }
 
@@ -71,8 +71,6 @@ function navigate(path) {
 }
 
 window.onload = function() {
-  // or extracting the hash from the entire URL
-  // hash-based client side routing
   console.log("URL is: " + window.location.href);
   if (URLHash()) {
     loadData();
