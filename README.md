@@ -9,3 +9,4 @@ Cloud services:
 
 TODO:
 * Sanitize input
+* Client-side unique URL dynamic hash (maybe need React Router, sigh)

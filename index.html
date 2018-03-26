@@ -14,19 +14,22 @@
             font-size: 20px;
             padding: 2em;
         }
-        textarea{
-            font-size: 14px;
+
+        textarea {
+            font-size: 16px;
         }
-
     </style>
+</head>
 
-    <body>
-        <textarea id="text1" rows="20" cols="100" placeholder="Type text here." autofocus=true>
-        </textarea>
-        <button onclick="submit()">Submit</button>
-        <div>
-            
-        </div>
+<body>
+    <input id="text2" type="text" placeholder='Type key here.'></input>
+    <button onclick="submitKey()">Load</button>
+    <textarea id="text1" rows="20" cols="80" placeholder='Type text here.' autofocus=true>
+    </textarea>
+    <button onclick="submit()">Save</button>
+    <div>
 
-        <script src='index.js'></script>
-    </body>
+    </div>
+
+    <script src='index.js'></script>
+</body>

@@ -12,10 +12,22 @@ String.prototype.hashCode = function() {
   return hash;
 };
 
+function submitKey() {
+  getData()
+    .then(data => {
+      entry = data[document.getElementById("text2").value];
+      console.log(entry);
+      if (entry && entry.text)
+        document.getElementById("text1").value = entry.text;
+      else alert("No text stored at that location.");
+    })
+    .then(console.log("Loaded."))
+    .catch(err => console.log(err));
+}
+
 function submit() {
   let text = document.getElementById("text1").value;
   console.log("Submitted.");
-  console.log(text);
   let hash = text.hashCode();
 
   getData()
@@ -27,7 +39,7 @@ function submit() {
       return data;
     })
     .then(data => updateData(data))
-    .then(alert("Saved at: " + url + "/" + hash));
+    .then(alert("Saved key: " + hash));
 }
 
 function getData() {
