@@ -8,7 +8,7 @@
     <meta name="description" content="description">
     <meta name="author" content="author">
     <!-- also suggests consistent color theme -->
-    <link rel='stylesheet' href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.1/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/wingcss" />
     <style>
         body {
             font-size: 20px;
@@ -16,18 +16,19 @@
         }
 
         textarea {
+            max-width: 80%;
             font-size: 16px;
         }
     </style>
 </head>
 
 <body>
+    <h2>TextStorage</h2>
+    <p>Store your text snippet via a unique url.</p>
     <textarea id="text1" rows="20" cols="80" placeholder='Type text here.' autofocus=true>
     </textarea>
+    <br>
     <button onclick="submit()">Save</button>
-    <div>
-
-    </div>
 
     <script src='index.js'></script>
 </body>
