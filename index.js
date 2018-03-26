@@ -1,21 +1,21 @@
-let url = "https://api.myjson.com/bins/9jfkn";
+const url = "https://api.myjson.com/bins/9jfkn";
 
 // from http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
 String.prototype.hashCode = function() {
   let hash = 0;
   if (this.length === 0) return hash;
   for (let i = 0; i < this.length; i++) {
-    let chr = this.charCodeAt(i);
+    const chr = this.charCodeAt(i);
     hash = (hash << 5) - hash + chr;
     hash |= 0; // Convert to 32bit integer
   }
   return hash;
 };
 
-function submitKey() {
+function loadData() {
   getData()
     .then(data => {
-      entry = data[document.getElementById("text2").value];
+      entry = data[URLHash()];
       console.log(entry);
       if (entry && entry.text)
         document.getElementById("text1").value = entry.text;
@@ -26,9 +26,9 @@ function submitKey() {
 }
 
 function submit() {
-  let text = document.getElementById("text1").value;
+  const text = document.getElementById("text1").value;
   console.log("Submitted.");
-  let hash = text.hashCode();
+  const hash = text.hashCode();
 
   getData()
     .then(data => {
@@ -38,15 +38,13 @@ function submit() {
       };
       return data;
     })
-    .then(data => updateData(data))
-    .then(alert("Saved key: " + hash));
+    .then(data => updateData(data)) // update data
+    .then(navigate(hash)); // redirect to new url
 }
 
 function getData() {
   // get data from db
-  return fetch(url).then(function(response) {
-    return response.json();
-  });
+  return fetch(url).then(res => res.json());
 }
 
 function updateData(newData) {
@@ -63,6 +61,20 @@ function updateData(newData) {
     .then(response => console.log("Success:", response));
 }
 
+function URLHash() {
+  return String(window.location.href.split("#")[1]) || "";
+}
+
+function navigate(path) {
+  const current = window.location.href;
+  window.location.href = current.replace(/#(.*)$/, "") + "#" + path;
+}
+
 window.onload = function() {
-  console.log("Loaded.");
+  // or extracting the hash from the entire URL
+  // hash-based client side routing
+  console.log("URL is: " + window.location.href);
+  if (URLHash()) {
+    loadData();
+  }
 };
