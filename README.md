@@ -1,5 +1,5 @@
 # zero-backend-webapp
-The Imgur and Giphy of text. Store your text snippets forever with a unique URL for each snippet.
+### The Imgur and Giphy of text. Store your text snippets forever with a unique URL for each snippet.
 
 No server, no database, but it WILL store your text reliably (and encrypted?).
 
