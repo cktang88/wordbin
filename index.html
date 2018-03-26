@@ -19,14 +19,20 @@
             max-width: 80%;
             font-size: 16px;
         }
+        #confirm{
+            text-align: right;
+            max-width: 80%;
+            font-size: .6em;
+        }
     </style>
 </head>
 
 <body>
     <h2>TextStorage</h2>
     <p>Store your text snippet via a unique url.</p>
-    <textarea id="text1" rows="20" cols="80" placeholder='Type text here.' autofocus=true></textarea>
+    <textarea id="text1" rows="20" cols="80" placeholder='Type text here.' autofocus=true oninput="textChanged()"></textarea>
     <br>
+    <div id='confirm'></div>
     <button onclick="submit()">Save</button>
 
     <script src='index.js'></script>

@@ -1,7 +1,7 @@
 # zero-backend-webapp
-An experimental web app without a back-end
+The Imgur and Giphy of text. Store your text snippets forever with a unique URL for each snippet.
 
-Text storage for the masses. Yes, no server, no database, but it WILL store your text reliably (and encrypted?).
+No server, no database, but it WILL store your text reliably (and encrypted?).
 
 Cloud services:
 * http://myjson.com/api

@@ -1,4 +1,5 @@
 const url = "https://api.myjson.com/bins/9jfkn";
+const $ = str => document.getElementById(str);
 
 // from http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
 String.prototype.hashCode = function() {
@@ -17,15 +18,14 @@ function loadData() {
     .then(data => {
       entry = data[URLHash()];
       console.log(entry);
-      if (entry && entry.text)
-        document.getElementById("text1").value = entry.text;
+      if (entry && entry.text) $("text1").value = entry.text;
     })
     .then(console.log("Loaded."))
     .catch(err => console.log(err));
 }
 
 function submit() {
-  const text = document.getElementById("text1").value;
+  const text = $("text1").value;
   console.log("Submitted.");
   const hash = text.hashCode();
 
@@ -57,7 +57,6 @@ function updateData(newData) {
   })
     .then(res => res.json())
     .catch(error => console.error("Error:", error))
-    .then(response => console.log("Success:", response));
 }
 
 function URLHash() {
@@ -68,6 +67,13 @@ function URLHash() {
 function navigate(path) {
   const current = window.location.href;
   window.location.href = current.replace(/#(.*)$/, "") + "#" + path;
+  // set confirmation
+  const url = window.location.href.replace(/(^\w+:|^)\/\//, ''); // remove http, https, www
+  $("confirm").innerText = "Successfully saved at " + url;
+}
+
+function textChanged() {
+  $("confirm").innerText = "Unsaved changes.";
 }
 
 window.onload = function() {
