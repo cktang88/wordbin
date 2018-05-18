@@ -1,5 +1,5 @@
-# word-bin
-
+# Wordbin
+:wastebasket:
 **[Pastebin](https://pastebin.com/)** clone. Store your text snippets forever with a unique URL for each snippet.
 Try it **[here](https://wordbin.netlify.com/)**.
 
