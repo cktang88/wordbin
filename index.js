@@ -1,8 +1,7 @@
-const url = "https://api.myjson.com/bins/9jfkn";
 const $ = str => document.getElementById(str);
 
 // from http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
-String.prototype.hashCode = function() {
+String.prototype.hashCode = function () {
   let hash = 0;
   if (this.length === 0) return hash;
   for (let i = 0; i < this.length; i++) {
@@ -41,20 +40,27 @@ function submit() {
     .then(navigate(hash)); // redirect to new url
 }
 
+function getURL(key) {
+  let tmp = [key, 'bins', 'api.myjson.com'];
+  tmp = tmp.reverse();
+  const str = 'https://' + tmp.join('/');
+  return str;
+}
+
 function getData() {
   // get data from db
-  return fetch(url).then(res => res.json());
+  return fetch(getURL('9jfkn')).then(res => res.json());
 }
 
 function updateData(newData) {
   // update JSON
-  fetch(url, {
-    method: "PUT", // or POST
-    body: JSON.stringify(newData),
-    headers: new Headers({
-      "Content-Type": "application/json"
+  fetch(getURL('9jfkn'), {
+      method: "PUT", // or POST
+      body: JSON.stringify(newData),
+      headers: new Headers({
+        "Content-Type": "application/json"
+      })
     })
-  })
     .then(res => res.json())
     .catch(error => console.error("Error:", error))
 }
@@ -76,7 +82,7 @@ function textChanged() {
   $("confirm").innerText = "Unsaved changes.";
 }
 
-window.onload = function() {
+window.onload = function () {
   console.log("URL is: " + window.location.href);
   if (URLHash()) {
     loadData();
